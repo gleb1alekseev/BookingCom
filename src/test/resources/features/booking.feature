@@ -11,5 +11,6 @@ Feature: Search on Booking.com
     And Choosing taxi from 'Berlin Brandenburg Airport Willy Brandt'
     And To place is 'Moxy Berlin Airport'
     And Choosing date
+    And Count of passengers
     When User start search
     Then Check that 'minivan' on the page

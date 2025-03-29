@@ -62,6 +62,12 @@ public class BookingTaxiSteps {
         $(By.cssSelector("[data-date='2025-04-05']")).click();
     }
 
+    @And("Count of passengers")
+    public void countOfPassengers() {
+        $(By.name("passengers")).click();
+        $x("//*[@id=\":rc:\"]/option[5]").click();
+    }
+
     @When("User start search")
     public void userStartSearch() {
         $(By.cssSelector("[data-testid='submit-button']")).click();
