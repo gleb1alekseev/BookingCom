@@ -5,3 +5,11 @@ Feature: Search on Booking.com
     When User does search
     Then Hotel 'North Beach Resort & Villas' should be on the search results page
     Then Hotel 'North Beach Resort & Villas' rating is '8,7'
+
+  Scenario: Search rent in city
+    Given User is looking for taxi on site
+    And Choosing taxi from 'Berlin Brandenburg Airport Willy Brandt'
+    And To place is 'Moxy Berlin Airport'
+    And Choosing date
+    When User start search
+    Then Check that 'minivan' on the page
