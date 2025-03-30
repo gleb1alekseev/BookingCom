@@ -2,8 +2,8 @@ package steps;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,17 +12,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import javax.lang.model.element.Element;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 public class BookingSteps {
@@ -52,11 +48,10 @@ public class BookingSteps {
 
     @When("User does search")
     public void userDoesSearch() {
-
         open("https://www.booking.com/");
         $(By.name("ss")).setValue(city);
         $(By.cssSelector("[data-testid='searchbox-dates-container']")).click();
-        $(By.cssSelector("[data-date='2025-03-25']")).click();
+        $(By.cssSelector("[data-date='2025-03-26']")).click();
         $(By.cssSelector("[data-date='2025-04-05']")).click();
         $(By.cssSelector("[type='submit']")).click();
     }
@@ -76,18 +71,4 @@ public class BookingSteps {
         String hotelRate = $x(String.format("//*[contains(text(),'%s')]/ancestor::div[@data-testid='property-card-container']//*[@data-testid='review-score']/div/div", hotel)).getText();
         Assert.assertEquals(hotelRate.split(" ")[1], rate);
     }
-
-    @AfterMethod
-    public void endTest() {
-        getWebDriver().quit();
-    }
-
-//    @Given("User provide information:")
-//    public void userProvideInformation(DataTable dataTable) {
-//        List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
-//        String name = data.get(0).get("name");
-//        String email = data.get(0).get("email");
-//        String phone = data.get(0).get("phone");
-//        System.out.println("Name: " + name);
-//    }
 }
